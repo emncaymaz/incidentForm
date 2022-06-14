@@ -1,0 +1,85 @@
+{% extends "hshassets/layout/hero_keyvisual.html" %}
+{% block brand-name %} Sicherheitsvorfall {% endblock %}
+{% block title %}  Sicherheitsvorfall {% endblock %}
+{% block hero-title %}  Sicherheitsvorfall{% endblock %}
+
+{% block nav-right %}
+{% if user.is_authenticated%}
+<div class="navbar-item">
+    <span style="color:white"><i>Hallo {{user}}</i></span>
+</div>
+<div class="navbar-item">
+    <a class="button is-primary has-text-dark" href="{% url 'sso-logout' %}">
+        <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+        <span>Logout</span>
+    </a>
+</div>
+{% else %}
+<div class="navbar-item">
+    <a class="button is-primary has-text-dark" href="{% url 'sso-dev' %}">
+        <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+        <span>Anmelden</span>
+    </a>
+</div>
+{% endif %}
+{% endblock %}
+{% block hero-foot %}
+<nav class="tabs is-boxed">
+    <div class="container">
+        <ul>
+            <li>
+                <a  class="button is-primary is-one-quarter has-text-dark" href="{% url 'form' %}">Formular</a>
+            </li>
+            <li>
+                <a   class="button is-primary has-text-dark" href="{% url 'home' %}">Liste der Formulare</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block footer %}
+<div class="columns is-desktop">
+    <div class="column is-narrow has-text-centered-touch">
+        {% block footer-left %}
+        <p>
+            <span class="icon is-small"><i class="fas fa-book"></i></span>
+            <a href="https://service.it.hs-hannover.de/impressum/">Impressum</a>
+        </p>
+        <p>
+            <span class="icon is-small"><i class="fas fa-eye-slash"></i></span>
+            <a href="https://service.it.hs-hannover.de/privacy/">Datenschutz</a>
+        </p>
+        {% endblock %}
+    </div>
+    <div class="column">
+        {# desktop: just eat the free space in the middle #}
+        {# touch: draw a delimeter #}
+        <div class="is-hidden-desktop"><hr/></div>
+    </div>
+    <div class="column is-narrow has-text-centered-touch">
+        {% block footer-right %}
+        <p><b>Hochschule Hannover (Team KoM)</b></p>
+        <p>
+            <abbr title=""><span class="icon is-small"><i class="fas fa-phone"></i></span></abbr>
+            <a href="tel:+4951192961010">+49 511 9296-1010</a>
+        </p>
+        <p>
+            <abbr title=""><span class="icon is-small"><i class="fas fa-envelope"></i></span></abbr>
+            <a href="mailto:to@hs-hannover.de">to@hs-hannover.de</a>
+        </p>
+        <p>
+            <abbr title=""><span class="icon is-small"><i class="fas fa-globe"></i></span></abbr>
+            <a href="https://www.hs-hannover.de/ueber-uns/organisation/oem/team-kom/">https://www.hs-hannover.de/.../team-kom/</a>
+        </p>
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+

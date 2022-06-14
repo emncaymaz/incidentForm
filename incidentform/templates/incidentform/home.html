@@ -1,0 +1,48 @@
+{% extends 'incidentform/base.html' %}
+
+{% block container %}
+{% if user.is_authenticated%}
+
+<div class="container">
+    <div class="">
+        <div class="columns is-gapless">
+            <div class="column is-2">
+                <strong>Formular</strong>
+            </div>
+            <div class="column is-1">
+                <strong>Bearbeiten</strong>
+            </div>
+            <div class="column">
+                <strong>Löschen</strong>
+            </div>
+        </div>
+        {% for list in object_list %}
+
+        <div class="columns is-gapless">
+            <div class="column is-2">
+                <strong>{{list.violation_name}}</strong>
+            </div>
+            <div class="column is-1">
+                <a href="{% url 'update' list.pk %}" ><button class="button is-success is-small">Bearbeiten</button></a>
+            </div>
+            <div class="column">
+                <a href="{% url 'delete' list.pk %}" > <button class="button is-danger is-small">Löschen</button></a>
+            </div>
+        </div>
+        {% empty %}
+        <article class="message is-warning">
+            <div class="message-body">
+                Bitte erstellen Sie ein Formular
+            </div>
+        </article>
+        {% endfor%}
+        {% else %}
+        <article class="message is-warning">
+            <div class="message-body">
+                Bitte anmelden
+            </div>
+        </article>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

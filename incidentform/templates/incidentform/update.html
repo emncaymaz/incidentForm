@@ -1,0 +1,33 @@
+{% extends 'incidentform/base.html' %}
+
+{% block container %}
+{% if user.is_authenticated %}
+{% for message in messages%}
+{{message}}
+{%endfor%}
+<form action="" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="columns is-gapless">
+        <div class="column">
+            <strong>{{field.label}} </strong>
+        </div>
+        <div class="column">
+            {{field}}
+            <small style="color:red">{{field.errors}}</small>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="buttons">
+        <input class="button is-success" type="submit" name="save" value="Speichern">
+        <input class="button is-warning" type="submit" name="send" value="Senden">
+    </div>
+</form>
+{% else %}
+<article class="message is-warning">
+    <div class="message-body">
+        Bitte anmelden
+    </div>
+</article>
+{% endif %}
+{% endblock %}

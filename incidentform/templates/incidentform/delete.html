@@ -1,0 +1,17 @@
+{% extends 'incidentform/base.html' %}
+{% block container %}
+<form action="" method="post">
+    {% csrf_token %}
+    <article class="message is-info">
+        <div class="message-header">
+            <strong>{{object.id}} - {{object.violation_name}}</strong>
+        </div>
+        <div class="message-body">
+            Möchten sie wirklich diesen Sicherheitsvorfall löschen  </div>
+        <div class="buttons">
+            <button class="button is-warning">Löschen</button>
+            <a class="button is-danger" href="{% url 'home' %}">Zurück</a>
+        </div>
+    </article>
+</form>
+{% endblock %}
